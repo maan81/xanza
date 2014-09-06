@@ -36,7 +36,7 @@ class Database{
 	/**
 	 * Get Table by parameters
 	 */
-	function get($table,$param,$symbol=false,$range_start=false,$range_end=false){
+	function get($table,$param,$symbol=false,$range_start=false,$range_end=false,$custom=false){
 		// _print_r($range_end);
 		self::connect();
 
@@ -80,7 +80,7 @@ class Database{
 			$sql .= ' AND Datetime 	>= "'.$range_start.'" AND Datetime <= "'.$range_end.'" ';
 		}
 
-		// get data of a s[ecific symbol only
+		// get data of a specific symbol only
 		if(!empty($symbol)){
 
 			$sql .= ' AND Symbol = "'.strtoupper($symbol).'" ';
@@ -108,20 +108,23 @@ class Database{
 				$sql .= ' ORDER BY Datetime DESC LIMIT 1 ';
 
 			}
-
 		}
 
-
+		if($custom){
+			$sql .= ' '.$custom.' ';
+		}
 
 		$sql .= ';';
 
-		// _print_r($sql,false);
+		_print_r($sql,false);
 
 		$res = mysqli_query($this->con,$sql);
 
 		$data = array();
+		if($res){
 		while($val = mysqli_fetch_assoc($res)){
 			$data[] = $val;
+		}
 		}
 		self::disconnect();
 

@@ -66,26 +66,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Forex Rates <b class="caret"></b></a>
               <ul class="dropdown-menu">
               	
-	                <li><a href="/gbpusd">GBPUSD</a></li>
-	                <li><a href="/usdchf">USDCHF</a></li>
-	                <li><a href="/eurusd">EURUSD</a></li>
-	                <li><a href="/gbpjpy">GBPJPY</a></li>
-	                <li><a href="/eurjpy">EURJPY</a></li>
-	                <li><a href="/gbpeur">GBPEUR</a></li>
-	                <li><a href="/usdcad">USDCAD</a></li>
-	                <li><a href="/usdjpy">USDJPY</a></li>
-	                <li><a href="/audusd">AUDUSD</a></li>
-	                <li><a href="/nzdusd">NZDUSD</a></li>
-	                <li><a href="/euraud">EURAUD</a></li>
-	                <li><a href="/eurchf">EURCHF</a></li>
-	                <li><a href="/gbpchf">GBPCHF</a></li>
-	                <li><a href="/cadjpy">CADJPY</a></li>
-	                <li><a href="/audnzd">AUDNZD</a></li>
-	                <li><a href="/gbpcad">GBPCAD</a></li>
-	                <li><a href="/eurnzd">EURNZD</a></li>
-	                <li><a href="/eurcad">EURCAD</a></li>
-	                <li><a href="/chfjpy">CHFJPY</a></li>
-	                <li><a href="/audjpy">AUDJPY</a></li>
+                <?php foreach($config['symbols'] as $key=>$val):?>
+                    <li><a href="/<?=strtolower($val)?>"><?=strtoupper($val)?></a></li>
+                <?php endforeach;?>
 	      
 	        </ul>
             </li>

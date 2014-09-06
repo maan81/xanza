@@ -5,8 +5,8 @@
  */
 $config['db']['server']   = 'localhost';
 $config['db']['database'] = 'xanza_currency';
-$config['db']['username'] = 'xanza_currency';
-$config['db']['password'] = 'xac123!';
+$config['db']['username'] = 'root';
+$config['db']['password'] = 'password';
 
 
 
@@ -16,7 +16,9 @@ $config['db']['password'] = 'xac123!';
 $config['db']['minute_table'] = 'minute_table';
 $config['db']['hour_table']   = 'hour_table';
 $config['db']['day_table']    = 'day_table';
+$config['db']['month_table']  = 'month_table';
 $config['db']['range_table']  = 'range_table';
+$config['db']['conversions']  = 'conversions';
 
 
 

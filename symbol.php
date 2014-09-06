@@ -15,25 +15,10 @@ require_once('include/config.php');
 require_once('include/db.php');
 
 //==============================
-	// echo 'asdfasdf';
-
-	// echo '<br/>';
-
-	// print_r($_REQUEST);
-
-	// echo '<br/>';
-
-	// print_r($_POST);
-
-	// echo '<br/>';
-
-	// print_r($_GET);
 
 	//here ,$symbol will be the currency identifier, eg, eurusd
 	$symbol = $_GET['symbol'];
 
-// _print_r(strtoupper($symbol),false);
-// _print_r($config['symbols']);
 
 
 	//using symbols limited to the 20 specified symbols
