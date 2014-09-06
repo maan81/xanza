@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+
+	RewriteEngine On
+
+	RewriteRule ^(gbpusd|usdchf|eurusd|gbpjpy|eurjpy|gbpeur|usdcad|usdjpy|audusd|nzdusd|euraud|eurchf|gbpchf|cadjpy|audnzd|gbpcad|eurnzd|eurcad|chfjpy|audjpy)$ symbol.php?symbol=$1
+
+	RewriteRule ^(gbpusd|usdchf|eurusd|gbpjpy|eurjpy|gbpeur|usdcad|usdjpy|audusd|nzdusd|euraud|eurchf|gbpchf|cadjpy|audnzd|gbpcad|eurnzd|eurcad|chfjpy|audjpy)/$ symbol.php?symbol=$1
+
+</IfModule>
