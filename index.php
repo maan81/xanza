@@ -127,11 +127,13 @@
 // exchange rates for today
 
 	foreach($view_data['currencies'] as $base){
-		$view_data['exchange_rates'][$base] = get_exchange_rates(	$base,
+		$view_data['exchange_rates'][$base] = get_exchange_rates(	$db,
+																	$base,
 																	$view_data['currencies']
 																);
 	}
-_print_r($view_data['exchange_rates']);
+	// die;	0
+	// _print_r($view_data['exchange_rates']);
 //------------------------------------------------------------------------------
 
 
@@ -160,7 +162,7 @@ _print_r($view_data['exchange_rates']);
 //------------------------------------------------------------------------------
 
 _print_r($view_data,false);
-die;
+// die;
 
 
 //==============================================================================

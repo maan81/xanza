@@ -26,20 +26,65 @@ function get_currency_lists($arr = []){
 
 /**
  * Get the exchange rates
+ * @param object -- to handle database
  * @param string -- the base currency
  * @param array -- array of target currencies
  * @param float -- the amount to convert from base
- * @param datetime -- the datetime to convert. 
+ * @param datetime -- the datetime to convert, along with '=', or '>=' .... 
  *                    if false, uses the latest datetime avilaible on db
+ *                    ie, '>"2014-08-08"' , '="2014-08-10"' ...
  * @return array -- array currency to amount
  */
-function get_exchange_rates($base,$target=[],$amount=1,$datetime=false){
+function get_exchange_rates($db,$base,$target=[],$amount=1,$datetime=false){
 	// _print_r($base,false);	
 	// _print_r($target,false);
+
+	$sql = 'SELECT DISTINCT(Symbol), Name, Rate, Ask, Bid '.
+		  'FROM `minute_table` '.
+		  'WHERE (';
+
+	$first = true;
 	foreach($target as $val){
 
+		$sql .= $first?'':'OR ';
+		$sql .= 'Symbol LIKE "'.$base.$val.'" ';
+		$first=false;
 	}
-	return [];
+	$sql .= ') ';
+
+	// currently datetime is not used ... so not much of problem !!!
+	if($datetime){
+		_print_r('!!! Datetime used !!! Confirm its usage !!!',false);
+		$sql .= ' AND Datetime '.$datetime.' ';
+	}
+	// currently datetime is not used ... so not much of problem !!!
+
+	$sql .= 'ORDER BY Datetime DESC, Symbol ASC; ';
+
+	// _print_r($sql,false);
+	
+
+
+	// SELECT DISTINCT(Symbol), Name, Rate, Ask, Bid
+	// FROM `minute_table`
+	// WHERE Symbol LIKE '%GBP%' 
+	// OR Symbol LIKE '%EUR%'
+	// ORDER BY Datetime DESC, Symbol ASC
+
+	$db->connect();
+	$res = mysqli_query($db->con,$sql);
+	$data = array();
+	if($res){
+	while($val = mysqli_fetch_assoc($res)){
+		$val['Rate'] = $val['Rate'] * $amount;
+		$data[] = $val;
+	}
+	}
+	$db->disconnect();
+
+	// _print_r($data,false);
+
+	return $data;
 }
 
 
