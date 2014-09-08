@@ -287,7 +287,7 @@ class Database{
 				' VALUES ( "'.implode('", "', $data).'" ); ';
 
 
-		_print_r($sql,false);
+		// _print_r($sql,false);
 		mysqli_query($this->con,$sql);
 
 		self::disconnect();

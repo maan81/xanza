@@ -66,9 +66,11 @@ function get_exchange_rates($db,$table,$base,$target=[],$amount=1,$datetime=fals
 	$data = $db->get($table,false,false,false,false,$sql_part);
 
 	for($i=0;$i<count($data);$i++){
-		$data[$i]['Rate'] = $data[$i]['Rate'] * $amount;
-		$data[$i]['Base'] = $base;
-		$data[$i]['Target'] = explode(' ', $data[$i]['Name'])[2];
+		$data[$i]['Rate'] 	  = $data[$i]['Rate'] * $amount;
+		$data[$i]['Base']	  = $base;
+		$data[$i]['BaseLo']	  = strtolower($base);
+		$data[$i]['Target']	  = explode(' ', $data[$i]['Name'])[2];
+		$data[$i]['TargetLo'] = strtolower($data[$i]['Target']);
 	}
 
 	// _print_r($data,false);die;

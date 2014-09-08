@@ -52,12 +52,14 @@
 //------------------------------------------------------------------------------
 // currency lists for dropdown
 
-    $view_data['currencies']            = get_currency_lists($config['symbols']);
-    $view_data['currency_details']      = $config['currencies'];
-    $view_data['currency_base']         = $config['currencies'][$symbol1_upper];
-    $view_data['currency_base']['abbr'] = $symbol1_upper;
-    $view_data['currency_target']           = $config['currencies'][$symbol2_upper];
-    $view_data['currency_target']['abbr']   = $symbol2_upper;
+    $view_data['currencies']               = get_currency_lists($config['symbols']);
+    $view_data['currency_details']         = $config['currencies'];
+    $view_data['currency_base']            = $config['currencies'][$symbol1_upper];
+    $view_data['currency_base']['abrUp']   = $symbol1_upper;
+    $view_data['currency_base']['abrLo']   = $symbol1;
+    $view_data['currency_target']          = $config['currencies'][$symbol2_upper];
+    $view_data['currency_target']['abrUp'] = $symbol2_upper;
+    $view_data['currency_target']['abrLo'] = $symbol2;
 
 //------------------------------------------------------------------------------
 

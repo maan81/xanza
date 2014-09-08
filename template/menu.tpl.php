@@ -48,7 +48,7 @@
 
         <ul class="nav navbar-nav">
             <li>
-                <a href="/">Home</a>
+                <a href="<?=$config['baseurl']?>">Home</a>
             </li>
 
             <li class="dropdown">
@@ -57,10 +57,10 @@
                 </a>
                 <ul class="dropdown-menu">
 
-                    <li><a href="/convert-gbp-usd/1">GBP to USD</a></li>
-                    <li><a href="/convert-eur-gbp/1">EUR to GBP</a></li>
-                    <li><a href="/convert-usd-gbp/1">USD to GBP</a></li>
-                    <li><a href="/convert-usd-cad/1">USD to CAD</a></li>
+                    <li><a href="<?=$config['baseurl']?>/convert-gbp-usd/1">GBP to USD</a></li>
+                    <li><a href="<?=$config['baseurl']?>/convert-eur-gbp/1">EUR to GBP</a></li>
+                    <li><a href="<?=$config['baseurl']?>/convert-usd-gbp/1">USD to GBP</a></li>
+                    <li><a href="<?=$config['baseurl']?>/convert-usd-cad/1">USD to CAD</a></li>
                 </ul>
             </li>
 
@@ -72,7 +72,7 @@
 
                     <?php foreach($config['symbols'] as $key=>$val):?>
                         <li>
-                            <a href="/<?=strtolower($val)?>">
+                            <a href="<?=$config['baseurl']?>/<?=strtolower($val)?>">
                                 <?=strtoupper($val)?>
                             </a>
                         </li>

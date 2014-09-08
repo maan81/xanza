@@ -37,7 +37,7 @@
                     <ul class="stats hidden-sm hidden-xs">
                         <li>
                             <div class="details">
-                                <span class="big">Send <?=$view_data['currency_base']['abbr']?> Worldwide With Zero Commission!</span>
+                                <span class="big">Send <?=$view_data['currency_base']['abrUp']?> Worldwide With Zero Commission!</span>
                             </div>
                         </li>
                     </ul>
@@ -54,7 +54,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
                         <h3 class="panel-title">
-                            <?=$view_data['currency_base']['abbr']?> <?=$view_data['currency_target']['abbr']?> Exchange Rate
+                            <?=$view_data['currency_base']['abrUp']?> <?=$view_data['currency_target']['abrUp']?> Exchange Rate
                         </h3>
                     </div>
                     <div class="panel-sub-heading">
@@ -132,7 +132,7 @@
                         <i class="icon-usd" style="margin-left:5px;margin-right:5px;"></i>
                         <i class="icon-eur"></i>
                         <i class="icon-gbp" style="margin-left:5px;margin-right:5px;"></i>
-                        <h3 class="panel-title">Convert Amount Currency Name in Other Currency</h3>
+                        <h3 class="panel-title">Convert Amount <?=$view_data['currency_base']['Currency']?> in Other Currencies</h3>
                         <!-- Replace "amount" with page amount, replace "currency name" with base currency to others -->
                     </div>
                     <div class="panel-body">
@@ -145,7 +145,7 @@
                                             <?php for($i=0;$i<count($view_data['exchange_rates']);$i+=2):?>
                                                 <tr>
                                                     <td>
-                                                        <a href="">
+                                                        <a href="<?=$config['baseurl'].'/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].'-'.$view_data['exchange_rates'][$i]['TargetLo'].'/'?>">
                                                             1 <?=$view_data['exchange_rates'][$i]['Base']?> 
                                                             = 
                                                             1.2 <?=$view_data['exchange_rates'][$i]['Target']?>
@@ -153,7 +153,7 @@
                                                     </td>
                                                     <?php $i++?>
                                                     <td>
-                                                        <a href="">
+                                                        <a href="<?=$config['baseurl'].'/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].'-'.$view_data['exchange_rates'][$i]['TargetLo'].'/'?>">
                                                             1 <?=$view_data['exchange_rates'][$i]['Base']?> 
                                                             = 
                                                             1.2 <?=$view_data['exchange_rates'][$i]['Target']?>
@@ -162,28 +162,6 @@
                                                 </tr>
                                             <?php endfor?>
 
-                                            <!-- 
-                                                <tr>
-                                                    <td><a href="">1 Euro = 1.2 British Pounds</a></td>
-                                                    <td><a href="">1 Euro = 1.2 US Dollar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="">1 Euro = 1.2 Australian Dollar</a></td>
-                                                    <td><a href="">1 Euro = 1.2 Canadian Dollar</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="">1 Euro = 1.2 New Zealand Dollar</a></td>
-                                                    <td><a href="">1 Euro = 1.2 Japanese Yen</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="">1 Euro = 1.2 Chinese Yuan Renminbi</a></td>
-                                                    <td><a href="">1 Euro = 1.2 Swiss Franc</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="">1 Euro = 1.2 Indian Rupee</a></td>
-                                                    <td><a href="">1 Euro = 1.2 South African Rand</a></td>
-                                                </tr> 
-                                            -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -239,7 +217,7 @@
                                         //loop thru each value
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
-                                                 '   <a href="'.$v['Link'].'">'.
+                                                 '   <a href="'.$config['baseurl'].$v['Link'].'">'.
                                                         $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
@@ -247,50 +225,6 @@
                                         echo '</tr>';
                                     }
                                     ?>
-                                    <!-- 
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr> 
-                                    -->
                                 </tbody>
                             </table>
                         </div>
@@ -320,7 +254,7 @@
                                         //loop thru each value
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
-                                                 '   <a href="'.$v['Link'].'">'.
+                                                 '   <a href="'.$config['baseurl'].'/'.$v['Link'].'">'.
                                                         $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
@@ -328,32 +262,6 @@
                                         echo '</tr>';
                                     }
                                     ?>
-                                    <!-- 
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr> 
-                                    -->
                                 </tbody>
                             </table>
                         </div>

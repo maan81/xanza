@@ -53,7 +53,7 @@ $config['currencies'] = array(
 											'Symbol'	=> 'SFr',
 										),
 								'EUR' => array(
-											'Currency'	=> 'European Euro',
+											'Currency'	=> 'Euro',
 											'Country'	=> 'Eurozone',
 											'Symbol'	=> '€',
 										),
@@ -73,7 +73,7 @@ $config['currencies'] = array(
 											'Symbol'	=> '$',
 										),
 								'USD' => array(
-											'Currency'	=> 'United States Dollar',
+											'Currency'	=> 'Dollar',
 											'Country'	=> 'United States',
 											'Symbol'	=> '$',
 										),
@@ -128,6 +128,12 @@ $config['range_table_range']  = '-33 days';
 
 
 $config['template']['path'] = 'template/';
+
+
+
+
+$config['baseurl'] = 'http://localhost/xanza';
+
 
 
 

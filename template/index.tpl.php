@@ -789,7 +789,7 @@
                                         //loop thru each value
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
-                                                 '   <a href="'.$v['Link'].'">'.
+                                                 '   <a href="'.$config['baseurl'].'/'.$v['Link'].'">'.
                                                         $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
@@ -868,7 +868,7 @@
                                         //loop thru each value
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
-                                                 '   <a href="'.$v['Link'].'">'.
+                                                 '   <a href="'.$config['baseurl'].$v['Link'].'">'.
                                                         $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
