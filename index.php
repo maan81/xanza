@@ -197,7 +197,7 @@
 									strtolower($popular[$i]['From']).
 										'-'.
 											strtolower($popular[$i]['To']).
-												'-convert/'.
+												'-/'.
 													$popular[$i]['Amount'];
 
 		$row[] = $popular[$i];
