@@ -41,8 +41,9 @@
 //------------------------------------------------------------------------------
 // data for box 1 & box 2
 
+	// get the last working day
 	$datetime = new DateTime(null, new DateTimeZone('UTC'));
-	$datetime->modify('-1 day');
+	$datetime->modify('-1 Weekday');
 	$earlier =  $datetime->format('Y-m-d');
 
 	//--------------------
@@ -94,14 +95,14 @@
 
 	// _print_r($view_data['box1'],false);
 	// _print_r($view_data['box2'],false);
-
+	// die;
 //------------------------------------------------------------------------------
 
 
 
 //------------------------------------------------------------------------------
+// 10 days graph
 
-	// 10 days graph
 	$view_data['graph_data'] = $db->get(	$config['db']['day_table'], 
 											false,
 											'GBPUSD', 
@@ -128,12 +129,13 @@
 
 	foreach($view_data['currencies'] as $base){
 		$view_data['exchange_rates'][$base] = get_exchange_rates(	$db,
+																	$config['db']['minute_table'],
 																	$base,
 																	$view_data['currencies']
 																);
 	}
-	// die;	0
 	// _print_r($view_data['exchange_rates']);
+	// die;
 //------------------------------------------------------------------------------
 
 
@@ -142,26 +144,69 @@
 // latest & popular conversions
 
 	// get latest conversions
-	$view_data['latest_conversions'] = $db->get(	$config['db']['conversions'], 
-													false, 
-													false, 
-													false, 
-													false,
-													' ORDER BY Datetime DESC LIMIT 40 '
-												);
+	$latest = $db->get(	$config['db']['conversions'], 
+						false, 
+						false, 
+						false, 
+						false,
+						' ORDER BY Datetime DESC LIMIT 40 '
+					);
+
+	for($i=0;$i<count($latest);$i++) {
+		if(($i%4)==0){
+			if($i>0){
+				$view_data['latest_conversions'][] = $row;
+			}
+
+			$row = [];
+		}
+		
+		$latest[$i]['Link'] = 'convert-'.
+								strtolower($latest[$i]['From']).
+									'-'.
+										strtolower($latest[$i]['To']).
+											'/'.
+												$latest[$i]['Amount'];
+
+
+		$row[] = $latest[$i];
+
+
+	}
+	$view_data['latest_conversions'][] = $row;
+
 
 	// get populat conversions
-	$view_data['popular_conversions'] = $db->get(	$config['db']['conversions'], 
-													false, 
-													false, 
-													false, 
-													false,
-													' ORDER BY Count LIMIT 12 '
-												);
+	$popular = $db->get(	$config['db']['conversions'], 
+							false, 
+							false, 
+							false, 
+							false,
+							' ORDER BY Count LIMIT 12 '
+						);
+
+	for($i=0;$i<count($popular);$i++) {
+		if(($i%2)==0){
+			if($i>0){
+				$view_data['popular_conversions'][] = $row;
+			}
+
+			$row = [];
+		}
+		$popular[$i]['Link'] = 'convert-'.
+									strtolower($popular[$i]['From']).
+										'-'.
+											strtolower($popular[$i]['To']).
+												'-convert/'.
+													$popular[$i]['Amount'];
+
+		$row[] = $popular[$i];
+	}
+	$view_data['popular_conversions'][] = $row;
 
 //------------------------------------------------------------------------------
 
-_print_r($view_data,false);
+// _print_r($view_data,false);
 // die;
 
 

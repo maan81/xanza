@@ -116,7 +116,7 @@ class Database{
 
 		$sql .= ';';
 
-		_print_r($sql,false);
+		// _print_r($sql,false);
 
 		$res = mysqli_query($this->con,$sql);
 
