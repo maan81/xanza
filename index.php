@@ -152,6 +152,7 @@
 						' ORDER BY Datetime DESC LIMIT 40 '
 					);
 
+    $row = [];
 	for($i=0;$i<count($latest);$i++) {
 		if(($i%4)==0){
 			if($i>0){
@@ -162,9 +163,9 @@
 		}
 		
 		$latest[$i]['Link'] = 'convert-'.
-								strtolower($latest[$i]['From']).
+								strtolower($latest[$i]['Base']).
 									'-'.
-										strtolower($latest[$i]['To']).
+										strtolower($latest[$i]['Target']).
 											'/'.
 												$latest[$i]['Amount'];
 
@@ -185,6 +186,7 @@
 							' ORDER BY Count LIMIT 12 '
 						);
 
+    $row = [];
 	for($i=0;$i<count($popular);$i++) {
 		if(($i%2)==0){
 			if($i>0){
@@ -194,9 +196,9 @@
 			$row = [];
 		}
 		$popular[$i]['Link'] = 'convert-'.
-									strtolower($popular[$i]['From']).
+									strtolower($popular[$i]['Base']).
 										'-'.
-											strtolower($popular[$i]['To']).
+											strtolower($popular[$i]['Target']).
 												'-/'.
 													$popular[$i]['Amount'];
 

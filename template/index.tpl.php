@@ -275,14 +275,14 @@
                                                     <tr>
                                                         <td>
                                                             <a class="tablenum" href="">
-                                                                <?=$vv['From']?> <?=$vv['To']?>
+                                                                <?=$vv['Base']?> <?=$vv['Target']?>
                                                             </a>
                                                         </td>
                                                         <td>
-                                                            <ul class="ico <?=strtolower($vv['From'])?> stylish-lists" 
+                                                            <ul class="ico <?=strtolower($vv['Base'])?> stylish-lists" 
                                                                     style="width:24px;float:left;">
                                                             </ul>
-                                                            <ul class="ico <?=strtolower($vv['To'])?> stylish-lists" 
+                                                            <ul class="ico <?=strtolower($vv['Target'])?> stylish-lists" 
                                                                     style="width:24px;float:left;">
                                                             </ul>
                                                         </td>
@@ -790,7 +790,7 @@
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
                                                  '   <a href="'.$v['Link'].'">'.
-                                                        $v['Amount'].' '.$v['From'].' to '.$v['To'].
+                                                        $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
                                         }
@@ -869,7 +869,7 @@
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
                                                  '   <a href="'.$v['Link'].'">'.
-                                                        $v['Amount'].' '.$v['From'].' to '.$v['To'].
+                                                        $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
                                         }
@@ -910,7 +910,7 @@
             </div>
         </div>
     </div>
-    
+
     </div>
     <!-- Row end -->
     </div>

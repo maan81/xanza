@@ -243,6 +243,82 @@ class Database{
 		// insert_range() function is exactly same asthe insert_day() function
 		self::insert_day($table,$data);
 
+		self::connect();
+
+		$keys = array('Symbol','Open','Heigh','Low','Closing','Datetime','Range_start','Range_end');
+
+		$sql = 'INSERT INTO '.$table.' ( '.implode(',',$keys).' ) VALUES ';
+
+		$first=true;
+
+		foreach($data as $key=>$val){
+			if(!$first){
+				$sql .= ',';
+			}
+
+			$sql .= '('.
+						'"'.$val['Symbol'].'",'.
+							$val['Open'].','.
+							$val['Heigh'].','.
+							$val['Low'].','.
+							$val['Closing'].','.
+						'"'.$val['Datetime'].'",'.
+						'"'.$val['Range_start'].'",'.
+						'"'.$val['Range_end'].'"'.
+					')';
+
+			$first = false;	
+		}
+		$sql .= ';';
+		// _print_r($sql,false);
+		mysqli_query($this->con,$sql);
+
+		self::disconnect();
+	}
+
+
+	function insert_conversion($table,$data){
+
+		self::connect();
+
+		$keys = array_keys($data);
+
+		$sql = ' INSERT INTO '.$table.' ( '.implode(',',$keys).' ) '.
+				' VALUES ( "'.implode('", "', $data).'" ); ';
+
+
+		_print_r($sql,false);
+		mysqli_query($this->con,$sql);
+
+		self::disconnect();
+	}
+
+
+	function update_conversion($table,$data){
+
+		self::connect();
+
+		$keys = array_keys($data);
+		$keys[] = 'Count';
+
+		$sql = ' INSERT INTO '.$table.' ( '.implode(',',$keys).' ) '.
+				' VALUES ( "'.implode('", "', $data).'" ); ';
+
+		$sql = 'UPDATE '.$table.' SET '.
+					' `Datetime`="'.$data['Datetime'].'", '.
+					' `Count`=`Count` + 1 '.
+				' WHERE 1 '.
+				
+				' AND Base="'.$data['Base'].'" '.
+				' AND Target="'.$data['Target'].'" '.
+				' AND `Amount`='.$data['Amount'].' '.
+				
+				' ; ';
+
+		// _print_r($sql,false);
+		mysqli_query($this->con,$sql);
+
+		self::disconnect();
 	}
 
 

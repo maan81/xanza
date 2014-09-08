@@ -11,114 +11,53 @@
 
 //==============================================================================
 
-
-
-//------------------------------------------------------------------------------
-// 2 symbols to be displayed in the homepage
-
-    $symbol1 = 'GBPEUR';
-    $symbol2 = 'GBPUSD';
+// _print_r($_GET);
 
 //------------------------------------------------------------------------------
+// 2 symbols & the amount for conversion
+
+    // base currency
+    $symbol1 = strtolower($_GET['base']);
+    $symbol1_upper = strtoupper($symbol1);
 
 
+    // target currency
+    $symbol2 = strtolower($_GET['target']);
+    $symbol2_upper = strtoupper($symbol2);
 
-//------------------------------------------------------------------------------
-// current data for top right corner
 
-    // current value 
-    $view_data['current1'] = $db->get($config['db']['minute_table'],'latest_minute',$symbol1);
-    $view_data['current2'] = $db->get($config['db']['minute_table'],'latest_minute',$symbol2);
-
-    // data for bar graph
-    $view_data['current_detail1'] = get_current_hour_detail($db,$config['db']['minute_table'],$symbol1);
-    $view_data['current_detail2'] = get_current_hour_detail($db,$config['db']['minute_table'],$symbol2);
+    // amount
+    $amount = $_GET['amount'];
 
 //------------------------------------------------------------------------------
 
 
-
 //------------------------------------------------------------------------------
-// data for box 1 & box 2
+    // //------------------------------------------------------------------------------
+    // // exchange rates for today
 
-    // get the last working day
-    $datetime = new DateTime(null, new DateTimeZone('UTC'));
-    $datetime->modify('-1 Weekday');
-    $earlier =  $datetime->format('Y-m-d');
-
-    //--------------------
-        // $yesterday1 = $db->get(  $config['db']['day_table'],
-        //                      false,
-        //                      $symbol1,
-        //                      false,
-        //                      false,
-        //                      ' AND Datetime  >= "'.$earlier.'"'
-        //                  );
-        // $percent_change1 = ( ($view_data['current1'][0]['Rate'] - $yesterday1[0]['Closing']) / $yesterday1[0]['Closing'] ) * 100 ;
-
-
-
-
-
-        // $yesterday2 = $db->get(  $config['db']['day_table'],
-        //                      false,
-        //                      $symbol2,
-        //                      false,
-        //                      false,
-        //                      ' AND Datetime  >= "'.$earlier.'"'
-        //                  );
-
-        // $percent_change2 = ( ($view_data['current2'][0]['Rate'] - $yesterday2[0]['Closing']) / $yesterday2[0]['Closing'] ) * 100 ;
-
-
-        // _print_r($yesterday1,false);
-        // _print_r($yesterday2,false);
-        // _print_r($view_data['current1'],false);
-        // _print_r($view_data['current2'],false);
-        // die;
-
-    // get_box_data($db,$table,$symbol,$earlier,$current,$yesterday_closing);
-
-    // data for box 1 & box 2
-    $view_data['box1'] = get_box_data(  $db,
-                                        $config['db']['day_table'],
-                                        $symbol1,
-                                        $earlier,
-                                        $view_data['current1'][0]
-                                    );
-    $view_data['box2'] = get_box_data(  $db,
-                                        $config['db']['day_table'],
-                                        $symbol2,
-                                        $earlier,
-                                        $view_data['current2'][0]
-                                    );
-
-    // _print_r($view_data['box1'],false);
-    // _print_r($view_data['box2'],false);
-    // die;
+    //     foreach($view_data['currencies'] as $base){
+    //         $view_data['exchange_rates'][$base] = get_exchange_rates(   $db,
+    //                                                                     $config['db']['minute_table'],
+    //                                                                     $base,
+    //                                                                     $view_data['currencies']
+    //                                                                 );
+    //     }
+    //     // _print_r($view_data['exchange_rates']);
+    //     // die;
+    // //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
-
-
-
-//------------------------------------------------------------------------------
-// 10 days graph
-
-    $view_data['graph_data'] = $db->get(    $config['db']['day_table'], 
-                                            false,
-                                            'GBPUSD', 
-                                            false, 
-                                            false, 
-                                            ' ORDER BY Datetime DESC LIMIT 10 '
-                                        );
-
-//------------------------------------------------------------------------------
-
 
 
 //------------------------------------------------------------------------------
 // currency lists for dropdown
 
-    $view_data['currencies'] = get_currency_lists($config['symbols']);
+    $view_data['currencies']            = get_currency_lists($config['symbols']);
+    $view_data['currency_details']      = $config['currencies'];
+    $view_data['currency_base']         = $config['currencies'][$symbol1_upper];
+    $view_data['currency_base']['abbr'] = $symbol1_upper;
+    $view_data['currency_target']           = $config['currencies'][$symbol2_upper];
+    $view_data['currency_target']['abbr']   = $symbol2_upper;
 
 //------------------------------------------------------------------------------
 
@@ -127,13 +66,11 @@
 //------------------------------------------------------------------------------
 // exchange rates for today
 
-    foreach($view_data['currencies'] as $base){
-        $view_data['exchange_rates'][$base] = get_exchange_rates(   $db,
-                                                                    $config['db']['minute_table'],
-                                                                    $base,
-                                                                    $view_data['currencies']
-                                                                );
-    }
+    $view_data['exchange_rates'] = get_exchange_rates(  $db,
+                                                        $config['db']['minute_table'],
+                                                        $symbol1_upper,
+                                                        $view_data['currencies']
+                                                    );
     // _print_r($view_data['exchange_rates']);
     // die;
 //------------------------------------------------------------------------------
@@ -141,7 +78,50 @@
 
 
 //------------------------------------------------------------------------------
-// latest & popular conversions
+// current data for top right corner
+
+    // get current conversion
+    $view_data['current_conversion'] = $db->get($config['db']['minute_table'],'latest_minute',$symbol1.$symbol2);
+
+    // [base] => gbp
+    // [target] => eur
+    // [amount] => 100
+
+
+    $where = ' AND Base="'.$symbol1_upper.'" AND Target="'.$symbol2_upper.'" AND Amount="'.$amount.'" ';
+    
+    $tmp = $db->get($config['db']['conversions'],false,false,false,false,$where);
+
+
+    //--------------------
+    // update ( or add ) the number of times the same 
+    // conversion has been done
+        $data =  [  'Base'    => $symbol1_upper,
+                    'Target'      => $symbol2_upper,
+                    'Amount'  => $amount,
+                    'Datetime'=> date("Y-m-d h:i:s")
+                ];
+
+        if(count($tmp)){
+            // update
+            $db->update_conversion($config['db']['conversions'],$data);
+
+        }else{
+            // insert
+            $db->insert_conversion($config['db']['conversions'],$data);
+        }
+        unset($tmp);
+        unset($data);
+        // die;
+    //--------------------
+
+
+//------------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------------
+// latest conversions
 
     // get latest conversions
     $latest = $db->get( $config['db']['conversions'], 
@@ -149,9 +129,10 @@
                         false, 
                         false, 
                         false,
-                        ' ORDER BY Datetime DESC LIMIT 40 '
+                        ' AND Base = "'.$symbol1_upper.'" ORDER BY Datetime DESC LIMIT 40 '
                     );
 
+    $row = [];
     for($i=0;$i<count($latest);$i++) {
         if(($i%4)==0){
             if($i>0){
@@ -162,9 +143,9 @@
         }
         
         $latest[$i]['Link'] = 'convert-'.
-                                strtolower($latest[$i]['From']).
+                                strtolower($latest[$i]['Base']).
                                     '-'.
-                                        strtolower($latest[$i]['To']).
+                                        strtolower($latest[$i]['Target']).
                                             '/'.
                                                 $latest[$i]['Amount'];
 
@@ -176,15 +157,22 @@
     $view_data['latest_conversions'][] = $row;
 
 
-    // get populat conversions
+//------------------------------------------------------------------------------
+
+
+
+//------------------------------------------------------------------------------
+// populat conversions
+
     $popular = $db->get(    $config['db']['conversions'], 
                             false, 
                             false, 
                             false, 
                             false,
-                            ' ORDER BY Count LIMIT 12 '
+                            ' AND Base = "'.$symbol1_upper.'" ORDER BY Count LIMIT 12 '
                         );
 
+    $row = [];
     for($i=0;$i<count($popular);$i++) {
         if(($i%2)==0){
             if($i>0){
@@ -194,9 +182,9 @@
             $row = [];
         }
         $popular[$i]['Link'] = 'convert-'.
-                                    strtolower($popular[$i]['From']).
+                                    strtolower($popular[$i]['Base']).
                                         '-'.
-                                            strtolower($popular[$i]['To']).
+                                            strtolower($popular[$i]['Target']).
                                                 '-/'.
                                                     $popular[$i]['Amount'];
 
@@ -206,6 +194,7 @@
 
 //------------------------------------------------------------------------------
 
+// _print_r($_GET,false);
 // _print_r($view_data,false);
 // die;
 

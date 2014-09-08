@@ -25,13 +25,59 @@ $config['db']['conversions']  = 'conversions';
 /**
  * Symbols to be used
  *  If these symbols are modified, the symbols in 
- *  .htaccess file should be modified as well
+ *  .htaccess file should be modified as well, 
+ *	including the full currency reference 
  */
 $config['symbols'] = array(	'GBPUSD', 'USDCHF', 'EURUSD', 'GBPJPY', 
 							'EURJPY', 'GBPEUR', 'USDCAD', 'USDJPY',
 							'AUDUSD', 'NZDUSD', 'EURAUD', 'EURCHF',
 							'GBPCHF', 'CADJPY', 'AUDNZD', 'GBPCAD',
 							'EURNZD', 'EURCAD', 'CHFJPY', 'AUDJPY');
+
+
+
+$config['currencies'] = array(
+								'AUD' => array(
+											'Currency'	=> 'Australian Dollar',
+											'Country'	=> 'Australia',
+											'Symbol'	=> '$',
+										),
+								'CAD' => array(
+											'Currency'	=> 'Canadian Dollar',
+											'Country'	=> 'Canada',
+											'Symbol'	=> '$',
+										),
+								'CHF' => array(
+											'Currency'	=> 'Swiss Franc',
+											'Country'	=> 'Switzerland',
+											'Symbol'	=> 'SFr',
+										),
+								'EUR' => array(
+											'Currency'	=> 'European Euro',
+											'Country'	=> 'Eurozone',
+											'Symbol'	=> '€',
+										),
+								'GBP' => array(
+											'Currency'	=> 'British Pound',
+											'Country'	=> 'United Kingdom',
+											'Symbol'	=> '£',
+										),
+								'JPY' => array(
+											'Currency'	=> 'Japanese Yen',
+											'Country'	=> 'Japan',
+											'Symbol'	=> '¥',
+										),
+								'NZD' => array(
+											'Currency'	=> 'New Zealand Dollar',
+											'Country'	=> 'New Zealand',
+											'Symbol'	=> '$',
+										),
+								'USD' => array(
+											'Currency'	=> 'United States Dollar',
+											'Country'	=> 'United States',
+											'Symbol'	=> '$',
+										),
+							);
 
 
 
