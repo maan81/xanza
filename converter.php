@@ -16,6 +16,8 @@
 //------------------------------------------------------------------------------
 // 2 symbols & the amount for conversion
 
+    // !!!!!!!! validations not done yet !!!!!!!!!!!!!!
+
     // base currency
     $symbol1 = strtolower($_GET['base']);
     $symbol1_upper = strtoupper($symbol1);
@@ -31,22 +33,6 @@
 
 //------------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------------
-    // //------------------------------------------------------------------------------
-    // // exchange rates for today
-
-    //     foreach($view_data['currencies'] as $base){
-    //         $view_data['exchange_rates'][$base] = get_exchange_rates(   $db,
-    //                                                                     $config['db']['minute_table'],
-    //                                                                     $base,
-    //                                                                     $view_data['currencies']
-    //                                                                 );
-    //     }
-    //     // _print_r($view_data['exchange_rates']);
-    //     // die;
-    // //------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
@@ -99,7 +85,7 @@
     // update ( or add ) the number of times the same 
     // conversion has been done
         $data =  [  'Base'    => $symbol1_upper,
-                    'Target'      => $symbol2_upper,
+                    'Target'  => $symbol2_upper,
                     'Amount'  => $amount,
                     'Datetime'=> date("Y-m-d h:i:s")
                 ];
@@ -171,7 +157,7 @@
                             false, 
                             false, 
                             false,
-                            ' AND Base = "'.$symbol1_upper.'" ORDER BY Count LIMIT 12 '
+                            ' AND Base = "'.$symbol1_upper.'" ORDER BY Count DESC LIMIT 12 '
                         );
 
     $row = [];
@@ -187,7 +173,7 @@
                                     strtolower($popular[$i]['Base']).
                                         '-'.
                                             strtolower($popular[$i]['Target']).
-                                                '-/'.
+                                                '/'.
                                                     $popular[$i]['Amount'];
 
         $row[] = $popular[$i];

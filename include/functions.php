@@ -93,7 +93,10 @@ function get_box_data($db,$table,$symbol,$earlier,$current){
 							' AND Datetime 	>= "'.$earlier.'"'
 						);
 
-	$percent_change = ( ($current['Rate'] - $yesterday[0]['Closing']) / $yesterday[0]['Closing'] ) * 100 ;
+	$percent_change = 0;
+	if(!empty($yesterday[0]['Closing'])){
+		$percent_change = ( ($current['Rate'] - $yesterday[0]['Closing']) / $yesterday[0]['Closing'] ) * 100 ;
+	}
 	$percent_change = round($percent_change,2);
 	// _print_r($yesterday,false);
 	// _print_r($current,false);

@@ -183,7 +183,7 @@
 							false, 
 							false, 
 							false,
-							' ORDER BY Count LIMIT 12 '
+							' ORDER BY Count DESC LIMIT 12 '
 						);
 
     $row = [];
@@ -199,7 +199,7 @@
 									strtolower($popular[$i]['Base']).
 										'-'.
 											strtolower($popular[$i]['Target']).
-												'-/'.
+												'/'.
 													$popular[$i]['Amount'];
 
 		$row[] = $popular[$i];

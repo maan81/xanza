@@ -57,10 +57,17 @@
                 </a>
                 <ul class="dropdown-menu">
 
-                    <li><a href="<?=$config['baseurl']?>/convert-gbp-usd/1">GBP to USD</a></li>
-                    <li><a href="<?=$config['baseurl']?>/convert-eur-gbp/1">EUR to GBP</a></li>
-                    <li><a href="<?=$config['baseurl']?>/convert-usd-gbp/1">USD to GBP</a></li>
-                    <li><a href="<?=$config['baseurl']?>/convert-usd-cad/1">USD to CAD</a></li>
+                    <?php foreach($view_data['currencies'] as $key=>$val): ?>
+                        <?php foreach($view_data['currencies'] as $kk=>$vv): ?>
+                            <?php if($vv==$val) continue;?>
+                            <li>
+                                <a href="<?=$config['baseurl']?>/convert-<?=strtolower($val)?>-<?=strtolower($vv)?>/1">
+                                    <?=$val?> to <?=$vv?>
+                                </a>
+                            </li>
+                        <?php endforeach?>
+                    <?php endforeach?>
+
                 </ul>
             </li>
 

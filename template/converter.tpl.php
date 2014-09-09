@@ -37,7 +37,9 @@
                     <ul class="stats hidden-sm hidden-xs">
                         <li>
                             <div class="details">
-                                <span class="big">Send <?=$view_data['currency_base']['abrUp']?> Worldwide With Zero Commission!</span>
+                                <span class="big">
+                                    Send <?=$view_data['currency_base']['abrUp']?> Worldwide With Zero Commission!
+                                </span>
                             </div>
                         </li>
                     </ul>
@@ -63,8 +65,10 @@
                     <div class="panel-body">
                         <div class="daily-stats">
                             <h1 class="number primary" style="font-size:220%">
-                                <!-- Show default for page as 1 unit of base currency. For all other conversion queries populate with convert amount -->
-                                50 <?=$view_data['currency_base']['Currency']?> to <?=$view_data['currency_target']['Currency']?> = 1.4595
+                                <!-- Show default for page as 1 unit of base currency. For all other 
+                                    conversion queries populate with convert amount -->
+                                50 <?=$view_data['currency_base']['Currency']?> 
+                                to <?=$view_data['currency_target']['Currency']?> = 1.4595
                             </h1>
                             <p class="avg">&nbsp;</p>
                             <ul class="linkout">
@@ -141,11 +145,16 @@
                                 <div class="table-responsive">
                                     <table class="table no-margin">
                                         <tbody>
-                                            <!-- Replace "amount" with page amount (default 1), replace base "currency name" with page base name -->
+                                            <!-- Replace "amount" with page amount (default 1), replace base 
+                                                "currency name" with page base name -->
                                             <?php for($i=0;$i<count($view_data['exchange_rates']);$i+=2):?>
                                                 <tr>
                                                     <td>
-                                                        <a href="<?=$config['baseurl'].'/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].'-'.$view_data['exchange_rates'][$i]['TargetLo'].'/'?>">
+                                                        <a href="<?=$config['baseurl'].
+                                                                        '/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].
+                                                                            '-'.
+                                                                                $view_data['exchange_rates'][$i]['TargetLo'].
+                                                                                    '/1'?>">
                                                             1 <?=$view_data['exchange_rates'][$i]['Base']?> 
                                                             = 
                                                             1.2 <?=$view_data['exchange_rates'][$i]['Target']?>
@@ -153,7 +162,11 @@
                                                     </td>
                                                     <?php $i++?>
                                                     <td>
-                                                        <a href="<?=$config['baseurl'].'/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].'-'.$view_data['exchange_rates'][$i]['TargetLo'].'/'?>">
+                                                        <a href="<?=$config['baseurl'].
+                                                                        '/convert-'.$view_data['exchange_rates'][$i]['BaseLo'].
+                                                                            '-'.
+                                                                                $view_data['exchange_rates'][$i]['TargetLo'].
+                                                                                    '/1'?>">
                                                             1 <?=$view_data['exchange_rates'][$i]['Base']?> 
                                                             = 
                                                             1.2 <?=$view_data['exchange_rates'][$i]['Target']?>
@@ -177,16 +190,35 @@
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        <i class="icon-jpy"></i><i class="icon-usd" style="margin-left:5px;margin-right:5px;"></i><i class="icon-eur"></i><i class="icon-gbp" style="margin-left:5px;margin-right:5px;"></i>
+
+                        <i class="icon-jpy"></i>
+                        <i class="icon-usd" style="margin-left:5px;margin-right:5px;"></i>
+                        <i class="icon-eur"></i><i class="icon-gbp" style="margin-left:5px;margin-right:5px;"></i>
+
                         <h3 class="panel-title">About This Exchange Rate</h3>
+
                     </div>
                     <div class="panel-sub-heading">
-                        <a href="#">Profile on EUR USD..</a> <!-- < Insert symbols here for this page. Also create php include where I can insert text paragraphs about the two currencies in the conversion below -->
+                        <a href="#">Profile on EUR USD..</a> 
+                        <!-- < Insert symbols here for this page. Also create php include where 
+                                I can insert text paragraphs about the two currencies in the 
+                                conversion below 
+                        -->
                     </div>
                     <div class="panel-body">
-                        <p>Include text here from a file named profile-symbol.php , "symbol" changing to base currency name for this paragraph</p>
+                        <p>
+                            <?php include(  'profiles'.
+                                                    '/profile-'.$view_data['currency_base']['abrLo'].'.php');?>
+                        </p>
                         <!-- example include profile-euro.php -->
-                        <p>Include text here from a file named profile-symbol.php , "symbol" changing to target currency name for this paragraph</p>
+                        <p>
+                            <!-- Include text here from a file named profile-symbol.php , "symbol" 
+                                changing to target currency name for this paragraph 
+                            -->
+                            <?php include(  'profiles'.
+                                                    '/profile-'.$view_data['currency_target']['abrLo'].'.php');?>
+
+                        </p>
                         <!-- example include profile-usd.php -->
                     </div>
                 </div>

@@ -797,50 +797,6 @@
                                         echo '</tr>';
                                     }
                                     ?>
-                                    <!--
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                            <td><a href="">98 GBP to EUR</a></td>
-                                            <td><a href="">2345 EUR to JPY</a></td>
-                                            <td><a href="">100 AUD to GBP</a></td>
-                                        </tr> 
-                                    -->
                                 </tbody>
                             </table>
                         </div>
@@ -876,32 +832,6 @@
                                         echo '</tr>';
                                     }
                                     ?>
-                                    <!-- 
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="">100 EUR to GBP</a></td>
-                                            <td><a href="">45 USD to GBP</a></td>
-                                        </tr> 
-                                    -->
                                 </tbody>
                             </table>
                         </div>
