@@ -301,8 +301,8 @@ class Database{
 		$keys = array_keys($data);
 		$keys[] = 'Count';
 
-		$sql = ' INSERT INTO '.$table.' ( '.implode(',',$keys).' ) '.
-				' VALUES ( "'.implode('", "', $data).'" ); ';
+		// $sql = ' INSERT INTO '.$table.' ( '.implode(',',$keys).' ) '.
+		// 		' VALUES ( "'.implode('", "', $data).'" ); ';
 
 		$sql = 'UPDATE '.$table.' SET '.
 					' `Datetime`="'.$data['Datetime'].'", '.

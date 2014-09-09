@@ -67,7 +67,7 @@
                             <h1 class="number primary" style="font-size:220%">
                                 <!-- Show default for page as 1 unit of base currency. For all other 
                                     conversion queries populate with convert amount -->
-                                50 <?=$view_data['currency_base']['Currency']?> 
+                                <?=$view_data['amount']?> <?=$view_data['currency_base']['Currency']?> 
                                 to <?=$view_data['currency_target']['Currency']?> = 1.4595
                             </h1>
                             <p class="avg">&nbsp;</p>
@@ -136,7 +136,9 @@
                         <i class="icon-usd" style="margin-left:5px;margin-right:5px;"></i>
                         <i class="icon-eur"></i>
                         <i class="icon-gbp" style="margin-left:5px;margin-right:5px;"></i>
-                        <h3 class="panel-title">Convert Amount <?=$view_data['currency_base']['Currency']?> in Other Currencies</h3>
+                        <h3 class="panel-title">
+                            Convert Amount <?=$view_data['currency_base']['Currency']?> in Other Currencies
+                        </h3>
                         <!-- Replace "amount" with page amount, replace "currency name" with base currency to others -->
                     </div>
                     <div class="panel-body">

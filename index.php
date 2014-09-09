@@ -96,16 +96,56 @@
 	// _print_r($view_data['box1'],false);
 	// _print_r($view_data['box2'],false);
 	// die;
+
 //------------------------------------------------------------------------------
 
+
+
+//------------------------------------------------------------------------------
+// current hour detail data
+
+	$current_hour_detail = $db->get($config['db']['minute_table'],'1_hour_earlier',$symbol1);
+	//_print_r($current_hour_detail,false);
+
+	$tmp = array();
+	for($i=0;$i<count($current_hour_detail);$i+=3){
+		$tmp[] = $current_hour_detail[$i];
+	}
+	$view_data['current_hour_detail1'] = $tmp;
+
+
+	$current_hour_detail1 = $db->get($config['db']['minute_table'],'1_hour_earlier',$symbol2);
+	//_print_r($current_hour_detail,false);
+
+	$tmp = array();
+	for($i=0;$i<count($current_hour_detail);$i+=3){
+		$tmp[] = $current_hour_detail[$i];
+	}
+	$view_data['current_hour_detail2'] = $tmp;
+
+	unset($current_hour_detail);
+	unset($tmp);
+
+	//_print_r($current_hour_detail1);
+	//_print_r($current_hour_detail2);
+
+//------------------------------------------------------------------------------
 
 
 //------------------------------------------------------------------------------
 // 10 days graph
 
-	$view_data['graph_data'] = $db->get(	$config['db']['day_table'], 
+	$view_data['graph_data1'] = $db->get(	$config['db']['day_table'], 
 											false,
-											'GBPUSD', 
+											$symbol1, 
+											false, 
+											false, 
+											' ORDER BY Datetime DESC LIMIT 10 '
+										);
+
+	$view_data['graph_data2'] = $db->get(	$config['db']['day_table'], 
+											false,
+											$symbol2, 
 											false, 
 											false, 
 											' ORDER BY Datetime DESC LIMIT 10 '
@@ -136,6 +176,7 @@
 	}
 	// _print_r($view_data['exchange_rates']);
 	// die;
+	
 //------------------------------------------------------------------------------
 
 

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Caudex';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Caudex'), url(http://fonts.gstatic.com/s/caudex/v6/C-hZH3TxxgxqDzJuctPSSw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Caudex';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Caudex Bold'), local('Caudex-Bold'), url(http://fonts.gstatic.com/s/caudex/v6/7-zMWCNNzmNM428U56wMqz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}

@@ -181,12 +181,17 @@
     <script src="<?=$tmpl_path?>js/daterange/daterangepicker.js"></script>
 
     <!-- Custom JS -->
-    <script type="text/javascript">
+    <script type="text/javascript" id="graph_data">
       var current_hour = [<?php for($i=0;$i<count($current_hour_detail);$i++){
                                   if($i) echo ',';
                                   echo $current_hour_detail[$i]['Rate'];
                                 }
                           ?>];
+
+      $('#graph_data').data('hour1', current_hour);
+
+      delete current_hour;
+
     </script>
     <script src="<?=$tmpl_path?>js/custom.js"></script>
 

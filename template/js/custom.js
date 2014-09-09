@@ -7,7 +7,7 @@ var $orange = "#F38733";
 
 // SparkLine Bar
 $(function () {
-  $('#orders').sparkline(current_hour, {
+  $('#orders').sparkline($('#graph_data').data('hour1'), {
     type: 'bar',
     barColor: [$orange, $secondary],
     barWidth: 6,

@@ -93,7 +93,9 @@
                         </div>
                     </div>
                     <div class="panel-footer clearfix">
-                        <a href="#" class="pull-left">See <?=$view_data['box1']['Symbol']?> Rates..</a>
+                        <a href="<?=$config['baseurl'].'/'.strtolower($view_data['current1'][0]['Symbol'])?>" 
+                                    class="pull-left">See <?=$view_data['box1']['Symbol']?> Rates..
+                        </a>
                     </div>
                 </div>
             </div>
@@ -104,7 +106,7 @@
                         <span class="label label-<?=($view_data['box1']['Percent_change']<0)?'danger':'primary'?>">
                             <?=$view_data['box2']['Percent_change']?>%
                         </span>
-                        <h3 class="panel-title">GBPUSD</h3>
+                        <h3 class="panel-title"><?=$view_data['box2']['Symbol']?></h3>
                     </div>
                     <div class="panel-sub-heading">
                         <a href="#">Real Time</a>
@@ -133,7 +135,9 @@
                         </div>
                     </div>
                     <div class="panel-footer clearfix">
-                        <a href="#" class="pull-left">See <?=$view_data['box2']['Symbol']?> Rates..</a>
+                        <a href="<?=$config['baseurl'].'/'.strtolower($view_data['current2'][0]['Symbol'])?>" 
+                                    class="pull-left">See <?=$view_data['box2']['Symbol']?> Rates..
+                        </a>
                     </div>
                 </div>
             </div>
@@ -193,19 +197,33 @@
                         <hr class="hidden-xs">
                         <div class="row hidden-xs">
                             <div class="col-md-3 col-sm-3 col-xs-3 center-align-text">
-                                <h3 class="no-margin no-padding">&pound;<?=$view_data['graph_data'][0]['Closing']?></h3>
-                                <small class="text-muted">Cost on <?=explode(' ', $view_data['graph_data'][0]['Range_start'])[0]?></small>
+                                <h3 class="no-margin no-padding">
+                                    <?=$config['currencies']['GBP']['Symbol']?>
+                                    <?=$view_data['graph_data1'][0]['Closing']?>
+                                </h3>
+                                <small class="text-muted">
+                                    Cost on <?=explode(' ', $view_data['graph_data1'][0]['Range_start'])[0]?>
+                                </small>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3 center-align-text">
-                                <h3 class="no-margin no-padding">&pound;<?=$view_data['graph_data'][0]['Heigh']?></h3>
+                                <h3 class="no-margin no-padding">
+                                    <?=$config['currencies']['GBP']['Symbol']?>
+                                    <?=$view_data['graph_data1'][0]['Heigh']?>
+                                </h3>
                                 <small class="text-muted">High</small>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3 center-align-text">
-                                <h3 class="no-margin no-padding">&pound;<?=$view_data['graph_data'][0]['Low']?></h3>
+                                <h3 class="no-margin no-padding">
+                                    <?=$config['currencies']['GBP']['Symbol']?>
+                                    <?=$view_data['graph_data1'][0]['Low']?>
+                                </h3>
                                 <small class="text-muted">Low</small>
                             </div>
                             <div class="col-md-3 col-sm-3 col-xs-3 center-align-text">
-                                <h3 class="no-margin no-padding">&pound;585</h3>
+                                <h3 class="no-margin no-padding">
+                                    <?=$config['currencies']['GBP']['Symbol']?>
+                                    <?=$config['current1'][0]['Rate']?>
+                                </h3>
                                 <small class="text-muted">Todays Rate in GBP</small>
                             </div>
                         </div>
@@ -253,14 +271,6 @@
                                 </li>
                                 <?php $first=false?>
                             <?php endforeach?>
-                            <!-- 
-                                <li class="active">
-                                    <a href="#gbp" data-toggle="tab" data-original-title="">GBP</a>
-                                </li>
-                                <li class="">
-                                    <a href="#euro" data-toggle="tab" data-original-title="">EURO</a>
-                                </li> 
-                            -->
                         </ul>
                         <br>
                         <div id="myTabContent" class="tab-content">
@@ -274,7 +284,7 @@
                                                 <?php foreach($val as $kk=>$vv):?>
                                                     <tr>
                                                         <td>
-                                                            <a class="tablenum" href="">
+                                                            <a class="tablenum" href="<?=$config['baseurl'].'/'.strtolower($vv['Symbol'])?>">
                                                                 <?=$vv['Base']?> <?=$vv['Target']?>
                                                             </a>
                                                         </td>
@@ -289,56 +299,6 @@
                                                         <td><span class="tablenum"><?=$vv['Rate']?></span></td>
                                                     </tr>
                                                 <?php endforeach?>
-                                                <!-- 
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP EUR</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP USD</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP AUD</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP NZD</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP CAD</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a class="tablenum" href="">GBP JPY</a></td>
-                                                        <td>
-                                                            <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                            <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        </td>
-                                                        <td><span class="tablenum">0.567</span></td>
-                                                    </tr> 
-                                                -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -346,400 +306,6 @@
                                 <?php $first=false?>
                             <?php endforeach?>
 
-                            <!-- 
-                                <div class="tab-pane fade active in" id="gbp">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP USD</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">GBP JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="euro">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR USD</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">EUR JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="usd">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">USD JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="aud">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD USD</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">AUD JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="nzd">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD USD</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">NZD JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="cad">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD USD</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">CAD JPY</a></td>
-                                                    <td>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="jpy">
-                                    <div class="table-responsive">
-                                        <table class="table no-margin">
-                                            <tbody>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY GBP</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico gbp stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY USD</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico usd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY AUD</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico aud stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY NZD</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico nzd stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY CAD</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico cad stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a class="tablenum" href="">JPY EUR</a></td>
-                                                    <td>
-                                                        <ul class="ico jpy stylish-lists" style="width:24px;float:left;"></ul>
-                                                        <ul class="ico eur stylish-lists" style="width:24px;float:left;"></ul>
-                                                    </td>
-                                                    <td><span class="tablenum">0.567</span></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div> 
-                            -->
                         </div>
                     </div>
                 </div>
@@ -824,7 +390,7 @@
                                         //loop thru each value
                                         foreach ($val as $k => $v) {
                                             echo '<td>'.
-                                                 '   <a href="'.$config['baseurl'].$v['Link'].'">'.
+                                                 '   <a href="'.$config['baseurl'].'/'.$v['Link'].'">'.
                                                         $v['Amount'].' '.$v['Base'].' to '.$v['Target'].
                                                  '   </a>'.
                                                 '</td>';
@@ -855,6 +421,59 @@
     <script src="template/js/flot/jquery.flot.resize.js"></script>
     <script src="template/js/flot/jquery.flot.tooltip.js"></script>
     <script src="template/js/flot/flot.excanvas.min.js"></script>
+
+    <script type="text/javascript" id="graph_data">
+
+        var graph_data;
+
+        // data for main graph
+
+            graph_data = [<?php $first=true;
+                                    foreach($view_data['graph_data1'] as $key=>$val){
+                                        echo $first?'':',';
+                                        echo '['.$key.', '.$val['Closing'].']';
+                                        $first=false;
+                                    }
+                                ?>]
+            $('#graph_data').data('data1', graph_data);
+            $('#graph_data').data('symbol1', '<?=$view_data['graph_data1'][0]['Symbol']?>');
+
+
+            graph_data = [<?php $first=true;
+                                foreach($view_data['graph_data2'] as $key=>$val){
+                                    echo $first?'':',';
+                                    echo '['.$key.', '.$val['Closing'].']';
+                                    $first=false;
+                                }
+                            ?>]
+
+            $('#graph_data').data('data2', graph_data);
+            $('#graph_data').data('symbol2', '<?=$view_data['graph_data2'][0]['Symbol']?>');
+
+
+
+
+        // data for bar graphs on upper right
+
+            graph_data = [<?php for($i=0;$i<count($view_data['current_hour_detail1']);$i++){
+                                      if($i) echo ',';
+                                      echo $view_data['current_hour_detail1'][$i]['Rate'];
+                                    }
+                              ?>];
+            $('#graph_data').data('hour1', graph_data);
+
+            graph_data = [<?php for($i=0;$i<count($view_data['current_hour_detail2']);$i++){
+                                      if($i) echo ',';
+                                      echo $view_data['current_hour_detail2'][$i]['Rate'];
+                                    }
+                              ?>];
+
+            $('#graph_data').data('hour2', graph_data);
+
+        delete graph_data;
+
+    </script>
+
     <!-- Custom flot JS -->
     <script src="template/js/flot/custom/combine-chart.js"></script>
     <!-- Sparkline graphs -->
