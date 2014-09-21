@@ -182,9 +182,9 @@
 
     <!-- Custom JS -->
     <script type="text/javascript" id="graph_data">
-      var current_hour = [<?php for($i=0;$i<count($current_hour_detail);$i++){
+      var current_hour = [<?php for($i=0;$i<count($view_data['current_hour_detail']);$i++){
                                   if($i) echo ',';
-                                  echo $current_hour_detail[$i]['Rate'];
+                                  echo $view_data['current_hour_detail'][$i]['Rate'];
                                 }
                           ?>];
 
