@@ -103,7 +103,7 @@
             <div class="col-md-3 col-sm-6 col-sx-6">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
-                        <span class="label label-<?=($view_data['box1']['Percent_change']<0)?'danger':'primary'?>">
+                        <span class="label label-<?=($view_data['box2']['Percent_change']<0)?'danger':'primary'?>">
                             <?=$view_data['box2']['Percent_change']?>%
                         </span>
                         <h3 class="panel-title"><?=$view_data['box2']['Symbol']?></h3>
